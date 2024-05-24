@@ -13,8 +13,25 @@
         android:theme="@style/Theme.ValidWordFinderwithBacktracking"
         tools:targetApi="31">
         <activity
+            android:name=".AlgorithmActivity"
+            android:exported="false"
+            android:label="@string/title_activity_algorithm"
+            android:theme="@style/Theme.ValidWordFinderwithBacktracking" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.ValidWordFinderwithBacktracking" />
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.ValidWordFinderwithBacktracking" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.ValidWordFinderwithBacktracking">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
