@@ -43,9 +43,15 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
         alfabet: MutableList<Char?>,
         path: MutableList<Char>,
         kamus: Set<String>,
-        hasil: MutableSet<String>
+        hasil: MutableSet<String>,
+        memo: MutableMap<String, Set<String>>
     ){
         val kata = path.joinToString("")
+        if (kata in memo) {
+            hasil.addAll(memo[kata]!!)
+            return
+        }
+
         if (apakahValid(kata, kamus)) {
             hasil.add(kata)
         }
@@ -57,16 +63,18 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
             alfabet[i]=null
             path.add(char)
 
-            AlgoritmaBacktrack(alfabet, path, kamus, hasil)
+            AlgoritmaBacktrack(alfabet, path, kamus, hasil, memo)
 
             path.removeAt(path.size - 1)
             alfabet[i] = char
         }
+        memo[kata] = hasil.toSet()
     }
 
     private fun cariKataValid(alfabet: List<Char>, kamus: Set<String>): Set<String>{
         val hasil = mutableSetOf<String>()
-        AlgoritmaBacktrack(alfabet.toMutableList(), mutableListOf(), kamus, hasil)
+        val memo = mutableMapOf<String, Set<String>>()
+        AlgoritmaBacktrack(alfabet.toMutableList(), mutableListOf(), kamus, hasil, memo)
         return hasil
     }
 }

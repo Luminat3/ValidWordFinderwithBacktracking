@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -61,7 +63,10 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun WordList(kata: String, panjang: Int, modifier: Modifier = Modifier) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier.padding(3.dp).border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp)).height(50.dp)) {
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier
+        .padding(3.dp)
+        .border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp))
+        .height(50.dp)) {
         Text(text = kata, fontWeight = FontWeight.Bold, modifier = Modifier
             .fillMaxWidth()
             .weight(1f)
@@ -81,7 +86,8 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
 {
     val montserrat = FontFamily(Font(R.font.montserrat_regular), Font(R.font.montserrat_bold, FontWeight.Bold))
     var input by remember { mutableStateOf(TextFieldValue("")) }
-    Box(modifier = modifier.background(color = Color.White)
+    Box(modifier = modifier
+        .background(color = Color.White)
         .fillMaxSize()
         .windowInsetsPadding(WindowInsets.systemBars)) {
         Column(
@@ -110,7 +116,9 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
 
             Text(text = "Kata yang Valid / Dapat Dibentuk :",
                 fontFamily = montserrat,
-                fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp).padding(10.dp))
+                fontWeight = FontWeight.Bold, modifier = Modifier
+                    .padding(10.dp)
+                    .padding(10.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
                 Text(text = "Kata-Kata", fontWeight = FontWeight.Bold, modifier = Modifier
@@ -122,10 +130,17 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                     .weight(1f)
                     .padding(start = 10.dp))
             }
-            Column(modifier = Modifier
-                .padding(top = 6.dp)
-                .verticalScroll(rememberScrollState())) {
-                viewModel.hasil.forEach { (kata, panjangKata) ->
+//            Column(modifier = Modifier
+//                .padding(top = 6.dp)
+//                .verticalScroll(rememberScrollState())) {
+//                viewModel.hasil.forEach { (kata, panjangKata) ->
+//                    WordList(kata = kata, panjang = panjangKata)
+//                }
+//            }
+
+            LazyColumn(modifier = Modifier
+                .padding(top = 6.dp)) {
+                items(viewModel.hasil){ (kata, panjangKata) ->
                     WordList(kata = kata, panjang = panjangKata)
                 }
             }
