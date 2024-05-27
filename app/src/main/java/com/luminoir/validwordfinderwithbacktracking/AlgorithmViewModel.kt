@@ -5,6 +5,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
+import java.util.Locale
 
 class AlgorithmViewModel (application: Application): AndroidViewModel(application){
     private val kamus: Set<String> by lazy {
@@ -13,11 +14,13 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
 
     var alfabet by mutableStateOf("")
     var hasil by mutableStateOf(emptyList<Pair<String, Int>>())
+    private val HASIL_MAX = 100
 
     fun cariKata() {
         val alfabetList = alfabet.toList()
         val found = cariKataValid(alfabetList, kamus)
-        hasil = found.map { kata -> kata to kata.length }
+//        hasil = found.map { kata -> kata to kata.length }
+        hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
     }
     private fun loadKamus(): Set<String> {
         val kamusSet = mutableSetOf<String>()
@@ -25,7 +28,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
             val inputStream = getApplication<Application>().assets.open("kamus.txt")
             inputStream.bufferedReader().useLines { lines ->
                 lines.forEach { line ->
-                    kamusSet.add(line.trim().toLowerCase())
+                    kamusSet.add(line.trim().lowercase(Locale.getDefault()))
                 }
             }
         } catch (e: Exception) {
@@ -71,6 +74,9 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
         memo[kata] = hasil.toSet()
     }
 
+    fun deleteHasil() {
+        hasil = emptyList()
+    }
     private fun cariKataValid(alfabet: List<Char>, kamus: Set<String>): Set<String>{
         val hasil = mutableSetOf<String>()
         val memo = mutableMapOf<String, Set<String>>()

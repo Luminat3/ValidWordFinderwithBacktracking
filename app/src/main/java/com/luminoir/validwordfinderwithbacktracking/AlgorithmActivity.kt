@@ -1,16 +1,7 @@
 package com.luminoir.validwordfinderwithbacktracking
 
-import android.app.Application
-import android.content.res.Resources.Theme
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,29 +11,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,7 +31,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -86,6 +66,9 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
 {
     val montserrat = FontFamily(Font(R.font.montserrat_regular), Font(R.font.montserrat_bold, FontWeight.Bold))
     var input by remember { mutableStateOf(TextFieldValue("")) }
+
+    val scope = rememberCoroutineScope()
+
     Box(modifier = modifier
         .background(color = Color.White)
         .fillMaxSize()
@@ -103,14 +86,20 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 16.dp))
+                    .padding(vertical = 16.dp),
+                )
+            Row()
+            {
+                ExtendedFloatingActionButton(
+                    icon = { Icon(Icons.Filled.Search,"") },
+                    text = { Text("Cari Kata Valid", fontFamily = montserrat, fontWeight = FontWeight.Bold) },
+                    onClick = { scope.launch {
+                        viewModel.deleteHasil()
+                        viewModel.cariKata() } },
+                    elevation = FloatingActionButtonDefaults.elevation(3.dp),
+                )
+            }
 
-            ExtendedFloatingActionButton(
-                icon = { Icon(Icons.Filled.Search,"") },
-                text = { Text("Cari Kata Valid", fontFamily = montserrat, fontWeight = FontWeight.Bold) },
-                onClick = { viewModel.cariKata() },
-                elevation = FloatingActionButtonDefaults.elevation(8.dp),
-            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -138,6 +127,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
 //                }
 //            }
 
+            //Menggunakan Lazy Coloumn agar tidak menggunakan resource yang lebih banyak
             LazyColumn(modifier = Modifier
                 .padding(top = 6.dp)) {
                 items(viewModel.hasil){ (kata, panjangKata) ->
@@ -145,6 +135,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                 }
             }
         }
+
     }
 }
 
@@ -156,3 +147,4 @@ fun AppPreview() {
         AlgorithmApp()
     }
 }
+
