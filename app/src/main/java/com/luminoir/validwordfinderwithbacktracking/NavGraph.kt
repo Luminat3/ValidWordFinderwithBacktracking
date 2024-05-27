@@ -12,11 +12,7 @@ fun setUpNavGraph(navHostController: NavHostController)
     {
         composable(route = Screen.main.route)
         {
-
-        }
-        composable(route = Screen.profile.route)
-        {
-            Profile()
+            AlgorithmApp()
         }
     }
 }
