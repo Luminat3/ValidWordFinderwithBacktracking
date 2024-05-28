@@ -18,7 +18,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
 
     fun cariKata() {
         val alfabetList = alfabet.toList()
-        val found = cariKataValid(alfabetList, kamus)
+        var found = cariKataValid(alfabetList, kamus)
 //        hasil = found.map { kata -> kata to kata.length }
         hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
     }
@@ -66,8 +66,8 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
             alfabet[i]=null
             path.add(char)
 
-            AlgoritmaBacktrack(alfabet, path, kamus, hasil, memo)
-
+            AlgoritmaBacktrack(alfabet, path, kamus, hasil, memo) //Memanggil ulang fungsi backtracking (rekursif)
+                                                                  //Ini dilakukan agar dapat mencoba semua rute yang ada
             path.removeAt(path.size - 1)
             alfabet[i] = char
         }

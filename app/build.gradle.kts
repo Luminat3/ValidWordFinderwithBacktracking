@@ -19,6 +19,10 @@ android {
             useSupportLibrary = true
         }
     }
+
+    dexOptions{
+        javaMaxHeapSize = "4g"
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
