@@ -109,6 +109,11 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                 fontWeight = FontWeight.Bold, modifier = Modifier
                     .padding(10.dp))
 
+            Text(text = "Waktu yang dibutuhkan : ${viewModel.searchTime} ms",
+                fontFamily = montserrat,
+                fontWeight = FontWeight.Bold, modifier = Modifier
+                    .padding(10.dp))
+
             Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
                 Text(text = "Kata-Kata", fontWeight = FontWeight.Bold, modifier = Modifier
                     .fillMaxWidth()
