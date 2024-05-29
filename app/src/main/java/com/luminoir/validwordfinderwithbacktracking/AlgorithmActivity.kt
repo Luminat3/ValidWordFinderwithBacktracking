@@ -98,15 +98,15 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                         viewModel.cariKata() } },
                     elevation = FloatingActionButtonDefaults.elevation(3.dp),
                 )
+
             }
 
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = "Kata yang Valid / Dapat Dibentuk :",
+            Text(text = "Kata yang Valid : ${viewModel.hasil.size}",
                 fontFamily = montserrat,
                 fontWeight = FontWeight.Bold, modifier = Modifier
-                    .padding(10.dp)
                     .padding(10.dp))
 
             Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
