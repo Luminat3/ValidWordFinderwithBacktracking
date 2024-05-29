@@ -16,14 +16,16 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
     var alfabet by mutableStateOf("")
     var hasil by mutableStateOf(emptyList<Pair<String, Int>>())
     var searchTime by mutableStateOf(0L)
-    private val HASIL_MAX = 100
+
+    //untuk menglimit hasil pencarian maksimum
+//    private val HASIL_MAX = 100
 
     fun cariKata() {
         val alfabetList = alfabet.toList()
         searchTime = measureTimeMillis {
             var found = cariKataValid(alfabetList, kamus)
-            //hasil = found.map { kata -> kata to kata.length }
-            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
+            hasil = found.map { kata -> kata to kata.length }
+//            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
         }
     }
     private fun loadKamus(): Set<String> {
@@ -46,7 +48,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
     }
 
 
-    private fun AlgoritmaBacktrack(
+    private fun algoritmaBacktrack(
         alfabet: MutableList<Char?>,
         path: MutableList<Char>,
         kamus: Set<String>,
@@ -70,7 +72,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
             alfabet[i]=null
             path.add(char)
 
-            AlgoritmaBacktrack(alfabet, path, kamus, hasil, memo) //Memanggil ulang fungsi backtracking (rekursif)
+            algoritmaBacktrack(alfabet, path, kamus, hasil, memo) //Memanggil ulang fungsi backtracking (rekursif)
                                                                   //Ini dilakukan agar dapat mencoba semua rute yang ada
             path.removeAt(path.size - 1)
             alfabet[i] = char
@@ -84,7 +86,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
     private fun cariKataValid(alfabet: List<Char>, kamus: Set<String>): Set<String>{
         val hasil = mutableSetOf<String>()
         val memo = mutableMapOf<String, Set<String>>()
-        AlgoritmaBacktrack(alfabet.toMutableList(), mutableListOf(), kamus, hasil, memo)
+        algoritmaBacktrack(alfabet.toMutableList(), mutableListOf(), kamus, hasil, memo)
         return hasil
     }
 }

@@ -44,7 +44,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun WordList(kata: String, panjang: Int, modifier: Modifier = Modifier) {
     Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier
-        .padding(3.dp)
+        .padding( bottom = 3.dp)
         .border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp))
         .height(50.dp)) {
         Text(text = kata, fontWeight = FontWeight.Bold, modifier = Modifier
@@ -114,7 +114,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                 fontWeight = FontWeight.Bold, modifier = Modifier
                     .padding(10.dp))
 
-            Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier.border(1.dp, Color.Black, shape = RoundedCornerShape(4.dp)).padding(vertical = 5.dp)) {
                 Text(text = "Kata-Kata", fontWeight = FontWeight.Bold, modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
