@@ -62,8 +62,7 @@ fun WordList(kata: String, panjang: Int, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = androidx.lifecycle.viewmodel.compose.viewModel())
-{
+fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
     val montserrat = FontFamily(Font(R.font.montserrat_regular), Font(R.font.montserrat_bold, FontWeight.Bold))
     var input by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -88,8 +87,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                     .fillMaxWidth()
                     .padding(vertical = 16.dp),
                 )
-            Row()
-            {
+            Row() {
                 ExtendedFloatingActionButton(
                     icon = { Icon(Icons.Filled.Search,"") },
                     text = { Text("Cari Kata Valid", fontFamily = montserrat, fontWeight = FontWeight.Bold) },
