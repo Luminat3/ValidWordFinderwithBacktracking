@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import java.util.Locale
+import kotlin.system.measureTimeMillis
 
 class AlgorithmViewModel (application: Application): AndroidViewModel(application){
     private val kamus: Set<String> by lazy {
@@ -14,13 +15,16 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
 
     var alfabet by mutableStateOf("")
     var hasil by mutableStateOf(emptyList<Pair<String, Int>>())
+    var searchTime by mutableStateOf(0L)
     private val HASIL_MAX = 100
 
     fun cariKata() {
         val alfabetList = alfabet.toList()
-        var found = cariKataValid(alfabetList, kamus)
-//        hasil = found.map { kata -> kata to kata.length }
-        hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
+        searchTime = measureTimeMillis {
+            var found = cariKataValid(alfabetList, kamus)
+            //hasil = found.map { kata -> kata to kata.length }
+            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
+        }
     }
     private fun loadKamus(): Set<String> {
         val kamusSet = mutableSetOf<String>()
