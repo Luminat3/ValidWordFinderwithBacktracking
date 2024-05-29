@@ -14,8 +14,8 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
     }
 
     var alfabet by mutableStateOf("")
-    var hasil by mutableStateOf(emptyList<Pair<String, Int>>())
-    var searchTime by mutableStateOf(0L)
+    var hasil by mutableStateOf(emptyList<Pair<String, Int>>()) //inisialisasi awal
+    var searchTime by mutableStateOf(0L) //inisialisasi awal search time
 
     //untuk menglimit hasil pencarian maksimum
 //    private val HASIL_MAX = 100
@@ -28,6 +28,8 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
 //            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
         }
     }
+
+    //membaca source kamus, dan menginisialisasinya ke sebuah variable
     private fun loadKamus(): Set<String> {
         val kamusSet = mutableSetOf<String>()
         try {
@@ -62,11 +64,13 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
         }
 
         if (apakahValid(kata, kamus)) {
-            hasil.add(kata)
-        }
+            hasil.add(kata)                     //cek jika kata itu valid atau tidak menggunakan
+        }                                       //fun apakahValid jika hasil True maka dimasukkan ke hasil
+                                                // jika False maka tidak dimasukkan
 
-        if (path.size  == alfabet.size) return
 
+        if (path.size  == alfabet.size) return  //kondisi berhenti eksplorasi, jika panjang path
+                                                // itu sama dengan panjang yang diinput
         for (i in alfabet.indices){
             val char = alfabet[i]?: continue
             alfabet[i]=null
@@ -82,6 +86,7 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
 
     fun deleteHasil() {
         hasil = emptyList()
+        searchTime = 0L
     }
     private fun cariKataValid(alfabet: List<Char>, kamus: Set<String>): Set<String>{
         val hasil = mutableSetOf<String>()
