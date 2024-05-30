@@ -2,6 +2,7 @@ package com.luminoir.validwordfinderwithbacktracking
 
 import android.app.Application
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
@@ -9,24 +10,29 @@ import java.util.Locale
 import kotlin.system.measureTimeMillis
 
 class AlgorithmViewModel (application: Application): AndroidViewModel(application){
-    private val kamus: Set<String> by lazy {
-        loadKamus()
+    private val kamus: Set<String>
+
+    init {
+        kamus = loadKamus()
     }
 
     var alfabet by mutableStateOf("")
     var hasil by mutableStateOf(emptyList<Pair<String, Int>>()) //inisialisasi awal
-    var searchTime by mutableStateOf(0L) //inisialisasi awal search time
-
+    var timetosearh by mutableLongStateOf(0L)
+    //inisialisasi awal search time
+    var searchTime by mutableLongStateOf(0L)
     //untuk menglimit hasil pencarian maksimum
 //    private val HASIL_MAX = 100
 
     fun cariKata() {
+        searchTime = 0L
         val alfabetList = alfabet.toList()
         searchTime = measureTimeMillis {
-            var found = cariKataValid(alfabetList, kamus)
+            val found = cariKataValid(alfabetList, kamus)
             hasil = found.map { kata -> kata to kata.length }
-//            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
         }
+//            hasil = found.take(HASIL_MAX).map { kata -> kata to kata.length }
+        timetosearh = searchTime
     }
 
     //membaca source kamus, dan menginisialisasinya ke sebuah variable
@@ -84,9 +90,8 @@ class AlgorithmViewModel (application: Application): AndroidViewModel(applicatio
         memo[kata] = hasil.toSet()
     }
 
-    fun deleteHasil() {
+    fun reset() {
         hasil = emptyList()
-        searchTime = 0L
     }
     private fun cariKataValid(alfabet: List<Char>, kamus: Set<String>): Set<String>{
         val hasil = mutableSetOf<String>()

@@ -1341,7 +1341,6 @@ al-fil
 al-hijr
 al-ikhlas
 al-insyirah
-al-isra'
 al-kafirun
 al-kahfi
 al-lahab
@@ -1349,7 +1348,6 @@ al-lail
 al-maidah
 al-malik
 al-qadr
-al-qur'an
 al-quran
 al-zalzalah
 ala
@@ -1753,7 +1751,6 @@ alpis
 alpokat
 alpukah
 alpukat
-alqur'an
 alquran
 alri
 alro
@@ -2257,7 +2254,6 @@ an-
 an-nahl
 an-nas
 an-nasr
-an-nisa'
 an.
 ana
 ana-
@@ -13709,9 +13705,6 @@ d.v.
 d.y.a.m.
 d.y.m.m.
 da
-da'ang
-da'i
-da'wah
 daayah
 dab
 daba
@@ -23050,7 +23043,6 @@ isotropik
 isovolumik
 ispa
 isra
-isra'
 israel
 israf
 israil
@@ -24222,7 +24214,6 @@ julung
 julung-julung
 julur
 julur-julur
-jum'at
 jumadilakhir
 jumadilawal
 jumantan
@@ -24332,7 +24323,6 @@ jute
 juvenil
 juwita
 juz
-k
 k-pop
 k.h.
 k.n.
@@ -24340,7 +24330,6 @@ k.o.
 k.pnb.
 k.vet.
 ka
-ka'bah
 kaa
 kaabah
 kab
@@ -31690,7 +31679,6 @@ kwitansi
 kwiz
 ky
 kyat
-l
 la
 laal
 laas
@@ -33030,7 +33018,6 @@ lezat
 lgbt
 lhkpn
 lhokseumawe
-li'o
 liabilitas
 liabuku
 lian
@@ -33889,7 +33876,6 @@ luyak
 luyu
 luyut
 lyceum
-m
 m.a.
 m.a.b.
 m.a.hk.
@@ -34376,7 +34362,6 @@ maksurah
 maktab
 maktal
 maktub
-maku'a
 makua
 makul
 makula
@@ -45823,7 +45808,6 @@ mflops
 mg
 mhz
 mi
-mi'raj
 miak
 mialgia
 miana
@@ -47052,7 +47036,6 @@ muzdalifah
 muzhab
 muzhib
 myanmar
-n
 n.b.
 na
 naam
@@ -48122,7 +48105,6 @@ nyunyut
 nyureng
 nyut
 nyut-nyutan
-o
 o.g.
 o.t.
 oalah
@@ -48931,7 +48913,6 @@ ozonisator
 ozonolisis
 ozonometer
 ozonoskop
-p
 p-3
 p.
 p.a.
@@ -57977,7 +57958,6 @@ puyunghai
 pvc
 pwi
 pyu
-q
 qada
 qaf
 qalbu
@@ -57997,11 +57977,8 @@ qolbu
 qua
 qudrah
 qudsi
-qur'an
-qur'ani
 qurah
 quraisy
-r
 r.
 r.a.
 r.ay.
@@ -65901,9 +65878,6 @@ syuriah
 syuriken
 syuruk
 syuting
-séance
-s?’ul-kh?timah
-t
 t.
 t.h.t.k.l.
 t.w.
@@ -71370,8 +71344,6 @@ tuyul
 tv
 tvri
 twit
-tête-à-tête
-u
 u.b.
 u.p.
 ua
@@ -71680,7 +71652,6 @@ umroh
 umu
 umuk
 umulkitab
-umulqur'an
 umum
 umumnya
 umun
@@ -72117,7 +72088,6 @@ uzbek
 uzbekistan
 uzlah
 uzur
-v
 vadem
 vados
 vagilitas
@@ -72434,7 +72404,6 @@ vitrikofobia
 vitrin
 vitriol
 viudata
-viva!
 vivarium
 vivifikasi
 vivipar

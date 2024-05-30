@@ -92,7 +92,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                     icon = { Icon(Icons.Filled.Search,"") },
                     text = { Text("Cari Kata Valid", fontFamily = montserrat, fontWeight = FontWeight.Bold) },
                     onClick = { scope.launch {
-                        viewModel.deleteHasil()
+                        viewModel.reset()
                         viewModel.cariKata() } },
                     elevation = FloatingActionButtonDefaults.elevation(3.dp),
                 )
@@ -107,7 +107,7 @@ fun AlgorithmApp(modifier: Modifier = Modifier, viewModel: AlgorithmViewModel = 
                 fontWeight = FontWeight.Bold, modifier = Modifier
                     .padding(10.dp))
 
-            Text(text = "Waktu yang dibutuhkan : ${viewModel.searchTime} ms",
+            Text(text = "Waktu yang dibutuhkan : ${viewModel.timetosearh} ms",
                 fontFamily = montserrat,
                 fontWeight = FontWeight.Bold, modifier = Modifier
                     .padding(10.dp))
